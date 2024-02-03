@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+Route::get('/', [HomeController::class, 'home'])->name('home');
+
+Route::get('/category', [CategoryController::class, 'list'])->name('category.list');
+Route::get('/category-create', [CategoryController::class, 'create'])->name('category.create');
+Route::post('/category-store', [CategoryController::class, 'store'])->name('category.store');
